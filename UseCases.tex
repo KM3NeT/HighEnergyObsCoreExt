@@ -179,7 +179,9 @@ FOR EACH ROW OF OUTPUT_VOTABLE:
     	EVENT_FILE['OBS_ID'] = GET RAW['accessURL']
 \end{verbatim}
 
-Table \ref{tab:datalink1} displays an example of the DataLink response table attached to such an event-list discovery. Mandatory FIELDS service\_def and error\_messsage are omitted because they are empty
+Table \ref{tab:datalink1} displays an example of the DataLink response table attached to such an event-list discovery. 
+The obs\_publisher\_did of the single discovered event-list is repeated in the ID column of the DataLink table.
+Mandatory FIELDS service\_def and error\_messsage are omitted because they are empty
 
 \begin{landscape}
 \begin{longtable}{|p{2.4cm}|p{3.3cm}|p{2.0cm}|p{2.4cm}|p{2.3cm}|p{2.4cm}|p{2.7cm}|}
