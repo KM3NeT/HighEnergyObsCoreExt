@@ -262,6 +262,27 @@ AND (obs_collection = 'CTAO-DR1')
 \end{verbatim}
 
 
+\subsubsection{Use Case --- Search for all ANTARES neutrino events in the direction of the Crab nebula}
+
+{\em Identify all neutrino events observed by ANTARES in a search cone around the Crab nebula.\/}
+
+\medskip
+\noindent Find all datasets satisfying:
+\begin{enumerate}[(i)]
+  \item dataproduct\_type = ``'',
+  \item dataproduct\_subtype = ``'',
+  \item obs\_collection = ``ANTARES'',
+  \item tmin $\geq 62502$ ({\em i.e.\/}, 2010-01-01),
+  \item tmax $\leq 62866$ ({\em i.e.\/}, 2020-12-31),
+  \item target\_name = ``Crab''.
+\end{enumerate}
+
+\begin{verbatim}
+SELECT * FROM ivoa.obscore
+NATURAL JOIN  ivoa.obscore_hea
+WHERE
+\end{verbatim}
+
 \subsection{Advanced Data Products}
 
 \subsubsection{Use Case --- Search for Chandra Source Catalog position error MCMC draws for X-ray detections in the vicinity of Gaia DR3 486718823701242368}
@@ -361,10 +382,20 @@ AND (INTERSECTS(TMOC(17, t_intervals), ...) = 1)
 SELECT * FROM ivoa.obscore
 NATURAL JOIN  ivoa.obscore_hea
 WHERE
-(dataproduct_type = 'timeseries')
-AND (dataproduct_subtype = 'flux')
-AND (obs_collection = 'CTAO-DR1')
-AND (target_name = 'PKS 2155-304')
-AND (tmin >= 62502)
-AND (tmax <= 62866)
+\end{verbatim}
+
+\subsubsection{Use Case --- Search for the \glspl{IRF} for a given direction and observation duration regardless of a neutrino event observation}
+
+{\em With the detector taking data, a given search might result in a non-observation of neutrinos although the detector could have observed events. The sensitivity of the detector towards a given neutrino flux is then calculated from IRFs to set an upper limit on a neutrino flux model.\/}
+
+\medskip
+\noindent Find all datasets satisfying:
+\begin{enumerate}[(i)]
+  \item dataproduct\_type = ,
+\end{enumerate}
+
+\begin{verbatim}
+SELECT * FROM ivoa.obscore
+NATURAL JOIN  ivoa.obscore_hea
+WHERE
 \end{verbatim}
