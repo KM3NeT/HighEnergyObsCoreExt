@@ -268,9 +268,10 @@ AND (obs_collection = 'CTAO-DR1')
 \medskip
 \noindent Find all ANTARES datasets satisfying:
 \begin{enumerate}[(i)]
-\item Position inside 2 degrees from (266.4168,−29.0078),
-\item dataproduct_type = event-list'' or bkgrate'' or aeff'', \item obs\_collection = ANTARES-2017-PS'',
-\item o_ucd contains ``phys.neutrino''.
+  \item Position inside 2 degrees from (266.4168,−29.0078),  
+  \item dataproduct_type = event-list'' or bkgrate'' or aeff'', 
+  \item obs\_collection = ANTARES-2007-2017'',
+  \item o_ucd contains ``phys.neutrino''.
 \end{enumerate}
 
 \begin{verbatim}
@@ -290,8 +291,9 @@ AND (o_ucd LIKE '%phys.neutrino%')
 \medskip
 \noindent Find all IRF datasets satisfying:
 \begin{enumerate}[(i)]
-\item Position inside 5 degrees from (18h 36m, +04d 00m),
-\item dataproduct_type = aeff'' or edisp'' or psf'', \item obs\_collection IN (KM3NeT-ARCA-DR1'', ``CTAO-DR1'').
+  \item Position inside 5 degrees from (18h 36m, +04d 00m),
+  \item dataproduct_type = aeff'' or edisp'' or psf'', 
+  \item obs\_collection IN (KM3NeT-ARCA-DR1'', ``CTAO-DR1'').
 \end{enumerate}
 
 \begin{verbatim}
@@ -310,8 +312,10 @@ AND (obs_collection IN ('KM3NeT-ARCA-DR1', 'CTAO-DR1'))
 \medskip
 \noindent Find all neutrino datasets satisfying:
 \begin{enumerate}[(i)]
-\item Position inside 1 degree from (83.633, 22.014),
-\item o_ucd contains phys.neutrino'', \item dataproduct\_type = event-bundle'' or event-list'', \item access\_format = datalink''.
+  \item Position inside 1 degree from (83.633, 22.014),
+  \item o_ucd contains phys.neutrino'', 
+  \item dataproduct\_type = event-bundle'' or event-list'', 
+  \item access\_format = datalink''.
 \end{enumerate}
 
 \begin{verbatim}
@@ -331,9 +335,9 @@ AND (access_format LIKE '%datalink%')
 \medskip
 \noindent Find all neutrino datasets satisfying:
 \begin{enumerate}[(i)]
-\item s_region intersects with a polygon defining the Fermi Bubbles,
-\item dataproduct_type = event-bundle'', \item o\_ucd contains phys.neutrino'',
-\item energy_min >= 1.6e−10 (approx. 1 GeV).
+  \item s_region intersects with a polygon defining the Fermi Bubbles,
+  \item dataproduct_type = event-bundle'', \item o\_ucd contains phys.neutrino'',
+  \item energy_min >= 1.6e−10 (approx. 1 GeV).
 \end{enumerate}
 
 \begin{verbatim}
