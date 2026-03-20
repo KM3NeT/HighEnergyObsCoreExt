@@ -269,7 +269,7 @@ AND (obs_collection = 'CTAO-DR1')
 \noindent Find all ANTARES datasets satisfying:
 \begin{enumerate}[(i)]
   \item Position inside 2 degrees from (266.4168,−29.0078),  
-  \item dataproduct_type = event-list'' or bkgrate'' or aeff'', 
+  \item dataproduct_type = ``event-list'' or ``bkgrate'' or ``aeff'', 
   \item obs\_collection = ANTARES-2007-2017'',
   \item o_ucd contains ``phys.neutrino''.
 \end{enumerate}
@@ -292,8 +292,8 @@ AND (o_ucd LIKE '%phys.neutrino%')
 \noindent Find all IRF datasets satisfying:
 \begin{enumerate}[(i)]
   \item Position inside 5 degrees from (18h 36m, +04d 00m),
-  \item dataproduct_type = aeff'' or edisp'' or psf'', 
-  \item obs\_collection IN (KM3NeT-ARCA-DR1'', ``CTAO-DR1'').
+  \item dataproduct_type = ``aeff'' or ``edisp'' or ``psf'', 
+  \item obs\_collection IN (``KM3NeT-ARCA'', ``CTAO-DR1'').
 \end{enumerate}
 
 \begin{verbatim}
@@ -314,8 +314,8 @@ AND (obs_collection IN ('KM3NeT-ARCA-DR1', 'CTAO-DR1'))
 \begin{enumerate}[(i)]
   \item Position inside 1 degree from (83.633, 22.014),
   \item o_ucd contains phys.neutrino'', 
-  \item dataproduct\_type = event-bundle'' or event-list'', 
-  \item access\_format = datalink''.
+  \item dataproduct\_type = ``event-bundle'' or ``event-list'', 
+  \item access\_format = ``datalink''.
 \end{enumerate}
 
 \begin{verbatim}
@@ -336,8 +336,7 @@ AND (access_format LIKE '%datalink%')
 \noindent Find all neutrino datasets satisfying:
 \begin{enumerate}[(i)]
   \item s_region intersects with a polygon defining the Fermi Bubbles,
-  \item dataproduct_type = event-bundle'', \item o\_ucd contains phys.neutrino'',
-  \item energy_min >= 1.6e−10 (approx. 1 GeV).
+  \item dataproduct_type = ``event-bundle'', \item o\_ucd contains ``phys.neutrino''
 \end{enumerate}
 
 \begin{verbatim}
@@ -348,7 +347,6 @@ WHERE
 POLYGON(0.0, 0.0, 10.0, 20.0, -10.0, 20.0, 0.0, 50.0)) = 1)
 AND (dataproduct_type = 'event-bundle')
 AND (o_ucd LIKE '%phys.neutrino%')
-AND (energy_min >= 1.6e-10)
 \end{verbatim}
 
 \subsection{Advanced Data Products}
