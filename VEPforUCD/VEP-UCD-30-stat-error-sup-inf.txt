@@ -8,7 +8,7 @@ New Term: stat.error.negative
 Prefix: P
 Label: Statistical error below the reference value 
 
-Description: For non symmetric error values, we want to distinguish between the upper error value and the lower error value w.r.t the reference value ( median or mean) . Here we consider the absolute value of the error below the reference value. 
+Description: For non symmetric error values, we want to distinguish between the upper error value and the lower error value w.r.t the reference value (median or mean). Here we consider the absolute value of the error below the reference value. 
 
 Rationale: 
 
