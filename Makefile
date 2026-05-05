@@ -15,7 +15,7 @@ DOCTYPE = PEN
 
 # An e-mail address of the person doing the submission to the document
 # repository (can be empty until a make upload is being made)
-AUTHOR_EMAIL=ian.evans@ , bruno.kehlifi@, mathieu.servillat@
+AUTHOR_EMAIL=ian.evans@ , bruno.khelifi@, mathieu.servillat@
 
 # Source files for the TeX document (but the main file must always
 # be called $(DOCNAME).tex)
