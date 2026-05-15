@@ -287,6 +287,97 @@ AND (obs_id = '4374')
 AND (obs_collection = 'CTAO-DR1')
 \end{verbatim}
 
+\subsubsection{Use Case --- Search for all ANTARES neutrino events for a given dataset in the direction of a point source}
+
+{\em Using the ANTARES 2007-2017 point source data set, retrieve all events, background estimate, and detector acceptance to calculate the expected neutrino flux from a given point source, e.g. HESSJ0632+057, as in \textit{G. Illuminati for the ANTARES Collaboration, PoS(ICRC2019)920} and recalculate the significance of the neutrino flux.}
+
+\medskip
+\noindent Find all datasets satisfying
+\begin{enumerate}[(i)]
+  \item Position inside 5 degrees from (98.24, 5.81),  
+  \item dataproduct\_type = ``event-bundle'' or ``event-list'' or ``response-function'', 
+  \item obs\_collection = ANTARES-2017-PS'',
+\end{enumerate}
+
+\begin{verbatim}
+SELECT * FROM ivoa.obscore
+NATURAL JOIN ivoa.obscore_hea
+WHERE
+(CONTAINS(POINT(s_ra, s_dec), CIRCLE, 98.24, 5.81, 5.0) = 1)
+AND (dataproduct_type IN ('event-bundle', 'event-list', 'response-function'))
+AND (obs_collection = 'ANTARES-2017-PS')
+\end{verbatim}
+
+\subsubsection{Use Case --- Retrieve the instrument response functions for a combined KM3NeT \& CTA sensitivity study for a point source.}
+
+{\em To study the combined future sensitivity for a source that is expected to emit gamma rays and neutrinos, retrieve general IRFs from both instruments to perform a sensitivity study for a source like Vela X as in \textbf{arXiv:2309.03007}, considering only track-like events due to their better angular resolution.}
+
+\medskip
+\noindent Find all IRF datasets satisfying:
+\begin{enumerate}[(i)]
+  \item Position inside 5 degrees from (0.8, -45.19),
+  \item dataproduct\_type = ``response-function'', 
+  \item instrument\_name = ``KM3NeT-ARCA''
+  \item t\_min/t\_max from 2027-2030
+  \item event\_type = ``track``
+\end{enumerate}
+
+\begin{verbatim}
+SELECT * FROM ivoa.obscore
+NATURAL JOIN ivoa.obscore_hea
+WHERE
+(CONTAINS(POINT(s_ra, s_dec), CIRCLE, 0.8, -45.19, 5.0) = 1)
+AND (dataproduct_type IN ('aeff', 'edisp', 'psf'))
+AND (instrument_name = '%ARCA%')
+AND (tmin <= 2027)
+AND (t_max >= 2032)
+AND (event_type = ``track``)
+\end{verbatim}
+
+\subsubsection{Use Case --- Study the combined neutrino flux for the Galactic plane}
+
+{\em Identify all neutrino data sets in the region of the Galactic plane to perform a combined neutrino flux study extending a study like the IceCube \textbf{Observation of high-energy neutrinos from the Galactic plane. DOI: 10.1126/science.adc9818}.}, using event lists and IRFs of datasets optimized for the analysis of diffuse neutrino emission.
+
+\medskip
+\noindent Find all neutrino datasets satisfying:
+\begin{enumerate}[(i)]
+  \item messenger = ``neutrino'', 
+  \item dataproduct\_type = ``event-bundle'',
+  \item analysis\_mode = ``diffuse''
+\end{enumerate}
+% diffuse
+
+\begin{verbatim}
+SELECT * FROM ivoa.obscore
+NATURAL JOIN ivoa.obscore_hea
+WHERE
+(dataproduct_type = 'event-bundle')
+AND (messenger = '%neutrino%')
+AND (analysis_mode = 'diffuse')
+\end{verbatim}
+
+\subsubsection{Use Case --- Calculate the probability for a source class to be emitters of tau neutrinos}
+
+{\em Using a catalog of potential sources, calculate the probability of measuring a $\nu_{\tau}$ neutrino flux from a stacking of all sources of that type with 10 years of data taking with widely spaced, i.e. high energy detectors like ARCA.}
+
+\medskip
+\noindent Find all neutrino datasets satisfying:
+\begin{enumerate}[(i)]
+  \item dataproduct\_type = ``response-function'', 
+  \item messenger contains ``pdgid16'' or ``pdgid18'',
+  \item obs\_mode = ``wide-array''
+  \item analysis\_mode = ``pointsource''
+\end{enumerate}
+
+\begin{verbatim}
+SELECT * FROM ivoa.obscore
+NATURAL JOIN ivoa.obscore_hea
+WHERE
+(dataproduct_type = 'response-function')
+AND (messenger = '%pdgid16%' OR messenger = '%pdgid18%')
+AND (obs_mode LIKE '%wide-array%')
+AND (analysis_mode LIKE '%pointsource%')
+\end{verbatim}
 
 \subsection{Advanced Data Products}
 
@@ -387,10 +478,20 @@ AND (INTERSECTS(TMOC(17, t_intervals), ...) = 1)
 SELECT * FROM ivoa.obscore
 NATURAL JOIN  ivoa.obscore_hea
 WHERE
-(dataproduct_type = 'timeseries')
-AND (dataproduct_subtype = 'flux')
-AND (obs_collection = 'CTAO-DR1')
-AND (target_name = 'PKS 2155-304')
-AND (tmin >= 62502)
-AND (tmax <= 62866)
+\end{verbatim}
+
+\subsubsection{Use Case --- Search for the \glspl{IRF} for a given direction and observation duration regardless of a neutrino event observation}
+
+{\em With the detector taking data, a given search might result in a non-observation of neutrinos although the detector could have observed events. The sensitivity of the detector towards a given neutrino flux is then calculated from IRFs to set an upper limit on a neutrino flux model.\/}
+
+\medskip
+\noindent Find all datasets satisfying:
+\begin{enumerate}[(i)]
+  \item dataproduct\_type = ,
+\end{enumerate}
+
+\begin{verbatim}
+SELECT * FROM ivoa.obscore
+NATURAL JOIN  ivoa.obscore_hea
+WHERE
 \end{verbatim}
